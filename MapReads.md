@@ -33,7 +33,7 @@ ls data/ | sed 's/.[12].fq.gz//g' | sort | uniq
 ls data/ | sed 's/.[12].fq.gz//g' | sort | uniq | while read sample
 do bwa mem -t Pila.1_0.fa data/{sample}.1.fq.gz data/{sample}.2.fq.gz > out/{sample}.aln-pe.sam
 samtools view -bS ${sample}.aln-pe.sam -o ${sample}.aln-pe.bam
-samtools sort ${sample}.aln-pe.bam ${sample}.aln-pe.sorted
+samtools sort ${sample}.aln-pe.bam -o ${sample}.aln-pe.sorted
 samtools index ${sample}.aln-pe.sorted.bam
 
 done
