@@ -37,3 +37,8 @@ samtools sort ${sample}.aln-pe.bam -o ${sample}.aln-pe.sorted
 samtools index ${sample}.aln-pe.sorted.bam
 
 done
+
+# now we will create a folder in wich we will call cnv from the bam files
+mkdir cnv
+cp out/*.aln-pe.sorted.bam cnv/
+awk -F"\t" '{ print $1,$2}' Pila.1_0.fa.fai > cnv/pila-size_chr.txt
